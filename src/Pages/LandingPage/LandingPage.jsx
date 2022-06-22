@@ -2,8 +2,10 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../../assets/images/login-logo.svg";
 import drawing from "../../assets/images/login-hero.svg";
+import { useNavigate } from "react-router-dom";
 
 const LandingPage = () => {
+  const navigate = useNavigate();
   return (
     <Container>
       <Nav>
@@ -13,8 +15,22 @@ const LandingPage = () => {
           </Link>
         </Logo>
         <AccessLink>
-          <Join> Join now </Join>
-          <Login> Sign in </Login>
+          <Join
+            onClick={() => {
+              navigate("/signup");
+            }}
+          >
+            {" "}
+            Join now{" "}
+          </Join>
+          <Login
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            {" "}
+            Sign in{" "}
+          </Login>
         </AccessLink>
       </Nav>
       <BodySection>
@@ -46,8 +62,11 @@ const Nav = styled.nav`
 `;
 const Logo = styled.div`
   width: 135px;
-  @media (max-width: 480px) {
+  @media (max-width: 768px) {
     width: 100px;
+  }
+  @media (max-width: 480px) {
+    width: 90px;
   }
 `;
 const AccessLink = styled.div`
@@ -92,41 +111,16 @@ const BodySection = styled.section`
   margin: auto;
   width: 100%;
   position: relative;
-  padding-bottom: 100px;
   padding: 150px 0px;
-  min-height: 700px;
   align-items: center;
   flex-wrap: wrap;
   align-content: flex-start;
-  @media (max-width: 768px) {
-    /* display: block; */
-  }
 `;
 
 const Hero = styled.div`
   position: absolute;
   width: 100%;
   top: 40px;
-
-  /* h1 {
-    font-size: 56px;
-    font-family: "montserrat", sans-serif;
-    font-weight: 200;
-    color: #8f5849;
-    @media (max-width: 480px) {
-      font-size: 32px;
-    }
-  }
-  img {
-    position: absolute;
-    right: -170px;
-    width: 700px;
-    top: 50px;
-    height: 560px;
-    @media (max-width: 480px) {
-      top: 200px;
-    }
-  } */
 `;
 const Heading = styled.div`
   font-size: 56px;
@@ -153,10 +147,10 @@ const Heading = styled.div`
   }
 `;
 const Illustration = styled.div`
-  width: 700px;
-  height: 560px;
+  width: 600px;
+  height: 460px;
   position: absolute;
-  right: -170px;
+  right: -120px;
   top: 0px;
   z-index: -1;
   @media (min-width: 481px) and (max-width: 768px) {
@@ -178,4 +172,5 @@ const Illustration = styled.div`
     height: 520px;
   }
 `;
+
 export default LandingPage;
