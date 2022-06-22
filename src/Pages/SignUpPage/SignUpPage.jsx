@@ -21,11 +21,11 @@ const SignUpPage = () => {
         <FormContainer>
           <Form>
             <label> Email Address </label>
-            <input type="email" name="email" />
+            <input type="email" name="email" required />
           </Form>
           <Form>
             <label> Password </label>
-            <input type="password" name="password" />
+            <input type="password" name="password" required />
           </Form>
           <Terms>
             {" "}
@@ -64,6 +64,12 @@ const SignUpPage = () => {
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
+
+  @media (max-width: 768px) {
+    background-color: white;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
 `;
 const Header = styled.div`
   width: 100%;
@@ -80,16 +86,23 @@ const Header = styled.div`
 `;
 const Content = styled.div`
   margin: auto;
-  width: 600px;
+  width: 100%;
   height: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 10px 15px;
+  @media (max-width: 768px) {
+    width: 90%;
+  }
   h1 {
     font-family: sans-serif;
     font-size: 32px;
     font-weight: 400;
+    @media (max-width: 768px) {
+      font-size: 28px;
+      text-align: center;
+    }
   }
 `;
 const FormContainer = styled.div`
@@ -102,6 +115,9 @@ const FormContainer = styled.div`
   margin-top: 30px;
   border-radius: 10px;
   background-color: #ffffff;
+  @media (max-width: 768px) {
+    width: 90%;
+  }
 `;
 const Form = styled.div`
   width: 90%;
@@ -116,9 +132,10 @@ const Form = styled.div`
     font-weight: 300;
   }
   input {
-    height: 25px;
+    height: 30px;
     outline: none;
     border: 1px solid black;
+    font-size: 16px;
     border-radius: 4px;
     padding-left: 10px;
     &:focus {

@@ -63,6 +63,9 @@ const Container = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: white;
+  @media (max-width: 768px) {
+    overflow-x: hidden;
+  }
 `;
 const Header = styled.div`
   width: 100%;
@@ -107,6 +110,10 @@ const FormContainer = styled.div`
   box-shadow: 1px 1px 12px -3px rgba(176, 172, 172, 0.75);
   -webkit-box-shadow: 1px 1px 12px -3px rgba(176, 172, 172, 0.75);
   -moz-box-shadow: 1px 1px 12px -3px rgba(176, 172, 172, 0.75);
+  @media (max-width: 768px) {
+    box-shadow: none;
+    margin-top: 20px;
+  }
   h2 {
     color: #0072b1;
     padding: 7px;
@@ -135,6 +142,9 @@ const Form = styled.div`
   display: flex;
   flex-direction: column;
   padding-bottom: 15px;
+  @media (max-width: 480px) {
+    margin-bottom: 15px;
+  }
   input {
     height: 50px;
     position: relative;
@@ -173,6 +183,9 @@ const Form = styled.div`
     padding-left: 10px;
     margin-top: 15px;
     transition: all 0.3s;
+    @media (max-width: 480px) {
+      margin-top: 25px;
+    }
   }
 `;
 const Forgot = styled.div`
