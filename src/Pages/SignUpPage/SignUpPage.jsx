@@ -40,7 +40,8 @@ const SignUpPage = () => {
             <h3>or</h3>
             <Google>
               {" "}
-              Sign in with google <img src={googleLogo} alt="google" />{" "}
+              <img src={googleLogo} alt="google" />
+              Sign in with google{" "}
             </Google>
             <Existing>
               Already on LinkedIn?{" "}
@@ -81,7 +82,6 @@ const Content = styled.div`
   margin: auto;
   width: 600px;
   height: fit-content;
-  margin-top: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -118,9 +118,14 @@ const Form = styled.div`
   input {
     height: 25px;
     outline: none;
-    border: 1px solid darkray;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding-left: 10px;
     &:focus {
       border-radius: 5px;
+    }
+    &[type="password"] {
+      letter-spacing: 4px;
     }
   }
 `;
@@ -181,11 +186,14 @@ const Google = styled.div`
   font-size: 16px;
   font-family: sans-serif;
   color: #0072b1;
-  justify-content: space-between;
+  justify-content: center;
   transition: all 0.3s;
   &:hover {
     cursor: pointer;
     background-color: #0073b121;
+  }
+  img {
+    padding-right: 10px;
   }
 `;
 
