@@ -2,9 +2,26 @@ import styled from "styled-components";
 import logo from "../../assets/images/login-logo.svg";
 import { useNavigate } from "react-router-dom";
 import googleLogo from "../../assets/images/google.svg";
+import { useState } from "react";
 
 const SignUpPage = () => {
+  const [formValue, setFormValue] = useState({
+    email: "",
+    password: "",
+  });
   const navigate = useNavigate();
+  const handleJoin = (e) => {
+    e.preventDefault();
+    console.log(formValue);
+  };
+  const changeHandler = (e) => {
+    const { value, name } = e.target;
+    setFormValue({
+      ...formValue,
+      [name]: value,
+    });
+  };
+  const { email, password } = formValue;
   return (
     <Container>
       <Header>
@@ -21,11 +38,23 @@ const SignUpPage = () => {
         <FormContainer>
           <Form>
             <label> Email Address </label>
-            <input type="email" name="email" required />
+            <input
+              type="email"
+              name="email"
+              value={email}
+              onChange={changeHandler}
+              required
+            />
           </Form>
           <Form>
             <label> Password </label>
-            <input type="password" name="password" required />
+            <input
+              type="password"
+              name="password"
+              value={password}
+              onChange={changeHandler}
+              required
+            />
           </Form>
           <Terms>
             {" "}
@@ -35,7 +64,7 @@ const SignUpPage = () => {
             </span>
             , and <span>Cookie Policy</span>.{" "}
           </Terms>
-          <JoinBtn> Agree & Join </JoinBtn>
+          <JoinBtn onClick={handleJoin}> Agree & Join </JoinBtn>
           <FormFooter>
             <h3>or</h3>
             <Google>
@@ -64,6 +93,9 @@ const SignUpPage = () => {
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 
   @media (max-width: 768px) {
     background-color: white;
@@ -81,6 +113,9 @@ const Header = styled.div`
     width: 135px;
     &:hover {
       cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      width: 100px;
     }
   }
 `;

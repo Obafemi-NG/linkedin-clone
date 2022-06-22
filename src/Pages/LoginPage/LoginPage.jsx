@@ -17,7 +17,6 @@ const LoginPage = () => {
           }}
         />
       </Header>
-      {/* <Content> */}
       <FormContainer>
         <Icon>
           <img src={userIcon} alt="" />
@@ -54,7 +53,6 @@ const LoginPage = () => {
           </NewUser>
         </FormFooter>
       </FormContainer>
-      {/* </Content> */}
     </Container>
   );
 };
@@ -78,24 +76,12 @@ const Header = styled.div`
     &:hover {
       cursor: pointer;
     }
+    @media (max-width: 768px) {
+      width: 100px;
+    }
   }
 `;
-// const Content = styled.div`
-//   margin: auto;
-//   width: 600px;
-//   height: fit-content;
-//   margin-top: 5px;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   border: 1px solid red;
-//   padding: 10px 15px;
-//   h1 {
-//     font-family: sans-serif;
-//     font-size: 32px;
-//     font-weight: 400;
-//   }
-// `;
+
 const FormContainer = styled.div`
   width: 400px;
   margin: auto;
@@ -146,7 +132,7 @@ const Form = styled.div`
     margin-bottom: 15px;
   }
   input {
-    height: 50px;
+    height: 40px;
     position: relative;
     outline: none;
     font-size: 16px;
