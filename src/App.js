@@ -1,7 +1,15 @@
 import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import LandingPage from "./Pages/LandingPage/LandingPage";
 
 function App() {
-  return <div className="App">Let's Build this LinkedIn Clone!</div>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;

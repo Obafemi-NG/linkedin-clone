@@ -28,4 +28,9 @@ img,
 nav {
   margin: 0;
   padding: 0;
+  border: none;
+  background: transparent;
+  font-size: 100%;
+  outline: none;
+  vertical-align: baseline;
 }
