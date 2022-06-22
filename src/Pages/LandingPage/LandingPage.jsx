@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../../assets/images/login-logo.svg";
+import drawing from "../../assets/images/login-hero.svg";
 
 const LandingPage = () => {
   return (
@@ -16,6 +17,16 @@ const LandingPage = () => {
           <Login> Sign in </Login>
         </AccessLink>
       </Nav>
+      <BodySection>
+        <Hero>
+          <Heading>
+            Welcome to your <br /> professional community
+          </Heading>
+          <Illustration>
+            <img src={drawing} alt="illustration" />
+          </Illustration>
+        </Hero>
+      </BodySection>
     </Container>
   );
 };
@@ -25,38 +36,146 @@ const Container = styled.div`
 `;
 
 const Nav = styled.nav`
-  padding: 5px 20px;
+  padding: 12px 16px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: nowrap;
+  max-width: 1128px;
+  margin: auto;
 `;
 const Logo = styled.div`
-  width: 100px;
+  width: 135px;
+  @media (max-width: 480px) {
+    width: 100px;
+  }
 `;
 const AccessLink = styled.div`
   display: flex;
+  justify-content: flex-end;
+  column-gap: 8px;
 `;
 const Join = styled.div`
   padding: 10px 18px;
   font-family: sans-serif;
   font-weight: 600;
-  color: #73777b;
+  color: rgba(0, 0, 0, 0.9);
   &:hover {
     background-color: #dfdfde;
     border-radius: 40px;
     cursor: pointer;
   }
+  @media (max-width: 480px) {
+    font-weight: 400;
+  }
 `;
 const Login = styled.div`
-  margin-left: 10px;
   padding: 10px 18px;
   color: #0072b1;
   border: 1px solid #0072b1;
   border-radius: 40px;
   font-weight: 600;
   font-family: sans-serif;
+  transition: all 0.5s;
   &:hover {
     cursor: pointer;
+    background-color: #0073b114;
+  }
+  @media (max-width: 480px) {
+    font-weight: 500;
+  }
+`;
+
+const BodySection = styled.section`
+  display: flex;
+  max-width: 1128px;
+  margin: auto;
+  width: 100%;
+  position: relative;
+  padding-bottom: 100px;
+  padding: 150px 0px;
+  min-height: 700px;
+  align-items: center;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  @media (max-width: 768px) {
+    /* display: block; */
+  }
+`;
+
+const Hero = styled.div`
+  position: absolute;
+  width: 100%;
+  top: 40px;
+
+  /* h1 {
+    font-size: 56px;
+    font-family: "montserrat", sans-serif;
+    font-weight: 200;
+    color: #8f5849;
+    @media (max-width: 480px) {
+      font-size: 32px;
+    }
+  }
+  img {
+    position: absolute;
+    right: -170px;
+    width: 700px;
+    top: 50px;
+    height: 560px;
+    @media (max-width: 480px) {
+      top: 200px;
+    }
+  } */
+`;
+const Heading = styled.div`
+  font-size: 56px;
+  font-family: "montserrat", sans-serif;
+  font-weight: 200;
+  letter-spacing: -2px;
+  color: #8f5849;
+  width: 65%;
+  z-index: 5;
+  @media (min-width: 481px) and (max-width: 768px) {
+    width: 100%;
+    margin-bottom: 30px;
+    font-size: 46px;
+    padding-left: 16px;
+  }
+  @media (max-width: 480px) {
+    margin: auto;
+    text-align: left;
+    font-size: 32px;
+    font-weight: 300;
+    width: 100%;
+    margin-bottom: 30px;
+    padding-left: 16px;
+  }
+`;
+const Illustration = styled.div`
+  width: 700px;
+  height: 560px;
+  position: absolute;
+  right: -170px;
+  top: 0px;
+  z-index: -1;
+  @media (min-width: 481px) and (max-width: 768px) {
+    margin: auto;
+    right: 0;
+    width: 480px;
+    height: 520px;
+    left: 0;
+    margin: auto;
+    top: 200px;
+  }
+  @media (max-width: 480px) {
+    right: 0;
+    left: 0;
+    margin: auto;
+    top: 120px;
+    padding-top: 10px;
+    width: 380px;
+    height: 520px;
   }
 `;
 export default LandingPage;
