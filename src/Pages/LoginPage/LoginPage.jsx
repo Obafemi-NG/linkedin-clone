@@ -68,7 +68,7 @@ const LoginPage = () => {
             }}
             focus={passwordIsTouched.toString()}
             required
-          />
+          />{" "}
           <label> Password </label>
           {passwordIsTouched && <Error> Please enter a valid password </Error>}
         </Form>
@@ -224,6 +224,7 @@ const Form = styled.div`
     }
   }
 `;
+
 const Error = styled.span`
   color: red;
   font-size: 10px;
