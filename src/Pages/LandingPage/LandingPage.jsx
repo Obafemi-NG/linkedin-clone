@@ -49,6 +49,7 @@ const LandingPage = () => {
 
 const Container = styled.div`
   width: 100%;
+  height: 100vh;
   @media (max-width: 768px) {
     overflow-x: hidden;
   }

@@ -3,9 +3,28 @@ import logo from "../../assets/images/login-logo.svg";
 import { useNavigate } from "react-router-dom";
 import userIcon from "../../assets/images/user.svg";
 import googleLogo from "../../assets/images/google.svg";
+import { useState } from "react";
 
 const LoginPage = () => {
+  const [formValue, setFormValue] = useState({
+    email: "",
+    password: "",
+  });
+  const [emailIsTouched, setEmailIsTouched] = useState(false);
+  const [passwordIsTouched, setPasswordIsTouched] = useState(false);
   const navigate = useNavigate();
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValue({
+      ...formValue,
+      [name]: value,
+    });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formValue);
+  };
+  const { email, password } = formValue;
   return (
     <Container>
       <Header>
@@ -22,17 +41,41 @@ const LoginPage = () => {
           <img src={userIcon} alt="" />
         </Icon>
         <Form>
-          <input type="email" name="email" required />
+          <input
+            type="email"
+            name="email"
+            value={email}
+            onChange={handleChange}
+            onBlur={() => {
+              setEmailIsTouched(true);
+            }}
+            focus={emailIsTouched.toString()}
+            required
+          />
           <label> Email address </label>
+          {emailIsTouched && (
+            <Error> please provide a valid email address </Error>
+          )}
         </Form>
         <Form>
-          <input type="password" name="password" required />
+          <input
+            type="password"
+            name="password"
+            onChange={handleChange}
+            value={password}
+            onBlur={() => {
+              setPasswordIsTouched(true);
+            }}
+            focus={passwordIsTouched.toString()}
+            required
+          />
           <label> Password </label>
+          {passwordIsTouched && <Error> Please enter a valid password </Error>}
         </Form>
         <Forgot>
           <h2> Forgot password? </h2>
         </Forgot>
-        <SignInBtn> Sign in</SignInBtn>
+        <SignInBtn onClick={handleSubmit}> Sign in</SignInBtn>
         <FormFooter>
           <h3>or</h3>
           <Google>
@@ -159,6 +202,13 @@ const Form = styled.div`
     &[type="password"] {
       letter-spacing: 4px;
     }
+    &:invalid[focus="true"] {
+      border: 1.5px solid red;
+      background-color: #ff00001b;
+    }
+    &:invalid ~ span {
+      display: block;
+    }
   }
   label {
     font-size: 18px;
@@ -173,6 +223,14 @@ const Form = styled.div`
       margin-top: 25px;
     }
   }
+`;
+const Error = styled.span`
+  color: red;
+  font-size: 10px;
+  padding-top: 3px;
+  display: none;
+  font-family: sans-serif;
+  font-weight: 200;
 `;
 const Forgot = styled.div`
   width: 90%;

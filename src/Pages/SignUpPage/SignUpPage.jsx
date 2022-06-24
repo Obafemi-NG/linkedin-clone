@@ -9,6 +9,8 @@ const SignUpPage = () => {
     email: "",
     password: "",
   });
+  const [emailIsTouched, setEmailIsTouched] = useState(false);
+  const [passwordIsTouched, setPasswordIsTouched] = useState(false);
   const navigate = useNavigate();
   const handleJoin = (e) => {
     e.preventDefault();
@@ -43,8 +45,13 @@ const SignUpPage = () => {
               name="email"
               value={email}
               onChange={changeHandler}
+              onBlur={() => {
+                setEmailIsTouched(true);
+              }}
+              focus={emailIsTouched.toString()}
               required
             />
+            {emailIsTouched && <Error> provide a valid email address </Error>}
           </Form>
           <Form>
             <label> Password </label>
@@ -53,8 +60,18 @@ const SignUpPage = () => {
               name="password"
               value={password}
               onChange={changeHandler}
+              onBlur={() => {
+                setPasswordIsTouched(true);
+              }}
+              focus={passwordIsTouched.toString()}
               required
             />
+            {passwordIsTouched && (
+              <Error>
+                {" "}
+                provide a valid password. Password must not be less 8 characters{" "}
+              </Error>
+            )}
           </Form>
           <Terms>
             {" "}
@@ -147,7 +164,7 @@ const FormContainer = styled.div`
   padding: 15px 0px;
   align-items: center;
   min-height: 400px;
-  margin-top: 30px;
+  margin-top: 20px;
   border-radius: 10px;
   background-color: #ffffff;
   @media (max-width: 768px) {
@@ -179,7 +196,22 @@ const Form = styled.div`
     &[type="password"] {
       letter-spacing: 4px;
     }
+    &:invalid[focus="true"] {
+      border: 1.5px solid red;
+      background-color: #ff00001b;
+    }
+    &:invalid ~ span {
+      display: block;
+    }
   }
+`;
+const Error = styled.span`
+  color: red;
+  font-size: 10px;
+  padding-top: 3px;
+  display: none;
+  font-family: sans-serif;
+  font-weight: 200;
 `;
 const Terms = styled.p`
   font-weight: 300;
