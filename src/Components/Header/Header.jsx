@@ -2,7 +2,6 @@ import styled from "styled-components";
 import logo from "../../assets/images/home-logo.svg";
 import React from "react";
 import searchIcon from "../../assets/images/search-icon.svg";
-import menu from "../../assets/images/nav-work.svg";
 import notification from "../../assets/images/nav-notifications.svg";
 import messaging from "../../assets/images/nav-messaging.svg";
 import jobs from "../../assets/images/nav-jobs.svg";
@@ -72,10 +71,6 @@ const Header = () => {
                 <span>Notifications</span>
               </NavItem>
             </NavLink>
-            {/* <WorkMenu>
-              <img src={menu} alt="menu-icon" />
-              <p>Work</p>
-            </WorkMenu> */}
           </NavItemsList>
         </RightSection>
       </Content>
@@ -94,12 +89,13 @@ const Content = styled.div`
   margin: auto;
   display: flex;
   min-height: 100%;
-  padding: 8px 20px;
+  padding: 0px 20px;
   align-items: center;
 `;
 const LeftSection = styled.div`
   display: flex;
   align-items: center;
+  padding: 8px 0px;
 `;
 const Logo = styled.div`
   width: 30px;
@@ -109,7 +105,6 @@ const Logo = styled.div`
 `;
 const Search = styled.div`
   width: 200px;
-  /* position: relative; */
   input {
     width: 100%;
     height: 25px;
@@ -139,9 +134,7 @@ const RightSection = styled.nav`
   margin-left: auto;
   @media (max-width: 768px) {
     position: fixed;
-    right: 20px;
     background-color: white;
-    display: flex;
     width: 100vw;
     left: 0;
     right: 0;
@@ -157,30 +150,28 @@ const NavItemsList = styled.ul`
     width: 100vw;
     align-items: center;
     justify-content: center;
-    padding: 5px 5px;
-    /* justify-content: space-evenly; */
+    padding: 0px 5px;
   }
   a {
     text-decoration: none;
   }
-  /* .active {
-    span:after {
-      transform: scaleX(1);
-      border-bottom: 2px solid var(--white, #fff);
-      position: absolute;
-      bottom: 0;
-      transition: transform 0.2s ease-in-out;
-      border-color: rgba(0, 0, 0, 0.9);
+  .active {
+    border-bottom: 2px solid #0072b1;
+  }
+  @media (max-width: 768px) {
+    .active {
+      border-bottom: none;
+      border-top: 2px solid #0072b1;
     }
-  } */
+  }
 `;
 const NavItem = styled.li`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0px 10px;
-  background-color: red;
+  padding: 8px 10px;
+  /* background-color: red; */
 
   span {
     font-family: sans-serif;
@@ -196,26 +187,6 @@ const NavItem = styled.li`
       color: rgba(0, 0, 0, 0.9);
     }
   }
-  @media (max-width: 768px) {
-    width: 100%;
-    /* padding: 0px px; */
-  }
 `;
 
-// const WorkMenu = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   padding-left: 15px;
-//   border-left: 1px solid lightgray;
-//   p {
-//     font-family: sans-serif;
-//     font-weight: 300;
-//     color: #5b5b5b;
-//     font-size: 12px;
-//     padding-top: 2px;
-//     @media (max-width: 768px) {
-//       display: none;
-//     }
-//   }
-// `;
 export default Header;

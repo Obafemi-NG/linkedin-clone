@@ -4,6 +4,13 @@ import { useNavigate } from "react-router-dom";
 import userIcon from "../../assets/images/user.svg";
 import googleLogo from "../../assets/images/google.svg";
 import { useState } from "react";
+import { firebaseApp } from "../../firebase/firebase.utils";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 
 const LoginPage = () => {
   const [formValue, setFormValue] = useState({
@@ -20,11 +27,45 @@ const LoginPage = () => {
       [name]: value,
     });
   };
+  const { email, password } = formValue;
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formValue);
+    const authentication = getAuth(firebaseApp);
+    if (email && password) {
+      signInWithEmailAndPassword(authentication, email, password)
+        .then((response) => {
+          console.log(response);
+          sessionStorage.setItem(
+            "user auth",
+            response._tokenResponse.refreshToken
+          );
+          navigate("/home");
+          // localStorage.setItem('Auth Token')
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+    }
   };
-  const { email, password } = formValue;
+
+  const handleGoogleSignIn = () => {
+    const provider = new GoogleAuthProvider();
+    provider.setCustomParameters({
+      prompt: "select_account",
+    });
+    const authentication = getAuth();
+    signInWithPopup(authentication, provider)
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        console.log(token);
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log(error.code, error.message);
+      });
+  };
   return (
     <Container>
       <Header>
@@ -78,7 +119,7 @@ const LoginPage = () => {
         <SignInBtn onClick={handleSubmit}> Sign in</SignInBtn>
         <FormFooter>
           <h3>or</h3>
-          <Google>
+          <Google onClick={handleGoogleSignIn}>
             {" "}
             <img src={googleLogo} alt="google" />
             Sign in with google{" "}

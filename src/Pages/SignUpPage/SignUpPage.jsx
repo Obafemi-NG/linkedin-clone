@@ -3,6 +3,8 @@ import logo from "../../assets/images/login-logo.svg";
 import { useNavigate } from "react-router-dom";
 import googleLogo from "../../assets/images/google.svg";
 import { useState } from "react";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { firebaseApp } from "../../firebase/firebase.utils";
 
 const SignUpPage = () => {
   const [formValue, setFormValue] = useState({
@@ -12,9 +14,26 @@ const SignUpPage = () => {
   const [emailIsTouched, setEmailIsTouched] = useState(false);
   const [passwordIsTouched, setPasswordIsTouched] = useState(false);
   const navigate = useNavigate();
+  const { email, password } = formValue;
   const handleJoin = (e) => {
     e.preventDefault();
-    console.log(formValue);
+    if (email && password) {
+      console.log(formValue);
+      const authentication = getAuth(firebaseApp);
+      createUserWithEmailAndPassword(authentication, email, password)
+        .then((response) => {
+          console.log(response);
+
+          setFormValue({
+            email: "",
+            password: "",
+          });
+          navigate("/login");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
   const changeHandler = (e) => {
     const { value, name } = e.target;
@@ -23,7 +42,6 @@ const SignUpPage = () => {
       [name]: value,
     });
   };
-  const { email, password } = formValue;
   return (
     <Container>
       <Header>
